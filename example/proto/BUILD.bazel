@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "proto",
+    srcs = ["example.proto"],
+    visibility = ["//visibility:public"],
+)
+
+cc_proto_library(
+    name = "cc_proto",
+    visibility = ["//visibility:public"],
+    deps = [":proto"],
+)

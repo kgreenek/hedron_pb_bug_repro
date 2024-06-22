@@ -1,0 +1,87 @@
+workspace(name = "example")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+#################################################################################
+# rules_cc: C++ Rules for Bazel
+#################################################################################
+http_archive(
+    name = "rules_cc",
+    sha256 = "2037875b9a4456dce4a79d112a8ae885bbc4aad968e6587dca6e64f3a0900cdf",
+    strip_prefix = "rules_cc-0.0.9",
+    urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.9/rules_cc-0.0.9.tar.gz"],
+)
+
+#################################################################################
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+#################################################################################
+# Latest commit as of: June 6, 2024
+http_archive(
+    name = "hedron_compile_commands",
+    sha256 = "f01636585c3fb61c7c2dc74df511217cd5ad16427528ab33bc76bb34535f10a1",
+    strip_prefix = "bazel-compile-commands-extractor-a14ad3a64e7bf398ab48105aaa0348e032ac87f8",
+    urls = ["https://github.com/hedronvision/bazel-compile-commands-extractor/archive/a14ad3a64e7bf398ab48105aaa0348e032ac87f8.tar.gz"],
+)
+
+load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
+
+hedron_compile_commands_setup()
+
+load(
+    "@hedron_compile_commands//:workspace_setup_transitive.bzl",
+    "hedron_compile_commands_setup_transitive",
+)
+
+hedron_compile_commands_setup_transitive()
+
+load(
+    "@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl",
+    "hedron_compile_commands_setup_transitive_transitive",
+)
+
+hedron_compile_commands_setup_transitive_transitive()
+
+load(
+    "@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl",
+    "hedron_compile_commands_setup_transitive_transitive_transitive",
+)
+
+hedron_compile_commands_setup_transitive_transitive_transitive()
+
+#################################################################################
+# rules_proto - Protocol buffer rules for Bazel
+#################################################################################
+http_archive(
+    name = "rules_proto",
+    sha256 = "6fb6767d1bef535310547e03247f7518b03487740c11b6c6adb7952033fe1295",
+    strip_prefix = "rules_proto-6.0.2",
+    urls = ["https://github.com/bazelbuild/rules_proto/releases/download/6.0.2/rules_proto-6.0.2.tar.gz"],
+)
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
+
+rules_proto_dependencies()
+
+load("@rules_proto//proto:setup.bzl", "rules_proto_setup")
+
+rules_proto_setup()
+
+load("@rules_proto//proto:toolchains.bzl", "rules_proto_toolchains")
+
+rules_proto_toolchains()
+
+#################################################################################
+# protobuf - Protocol Buffers - Google's data interchange forma
+#################################################################################
+# NOTE: This depends on rules_proto, so do it after.
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "d19643d265b978383352b3143f04c0641eea75a75235c111cc01a1350173180e",
+    strip_prefix = "protobuf-25.3",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v25.3.tar.gz"],
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
