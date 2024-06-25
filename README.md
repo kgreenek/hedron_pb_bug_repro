@@ -1,3 +1,5 @@
+See: https://github.com/hedronvision/bazel-compile-commands-extractor/issues/201
+
 This repository reproduces an issue where the bazel build succeeds but hedron_compile_commands fails.
 
 There seems to be some sort of mismatch between the protobuf version hedron_compile_commands is finding.
