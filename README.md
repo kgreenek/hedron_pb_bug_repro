@@ -66,7 +66,7 @@ bazel-out/k8-opt/bin/example/proto/example.pb.h:17:2: error: "your headers."
 
 ## Work-around script
 
-Instead of evoking refresh_compile_commands with `bazel run`, use the workaround script as follows:
+Instead of invoking refresh_compile_commands with `bazel run`, use the workaround script as follows:
 
 ```bash
 ./refresh_compile_commands.sh
