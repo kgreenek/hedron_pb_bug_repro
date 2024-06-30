@@ -1,3 +1,5 @@
+## Reproducing the issue
+
 See: https://github.com/hedronvision/bazel-compile-commands-extractor/issues/201
 
 This repository reproduces an issue where the bazel build succeeds but hedron_compile_commands fails.
@@ -61,3 +63,13 @@ bazel-out/k8-opt/bin/example/proto/example.pb.h:17:2: error: "your headers."
 3 errors generated.
 >>> Finished extracting commands for //...
 ```
+
+## Work-around script
+
+Instead of evoking refresh_compile_commands with `bazel run`, use the workaround script as follows:
+
+```bash
+./refresh_compile_commands.sh
+```
+
+This script succeeds without any errors or warnings.
